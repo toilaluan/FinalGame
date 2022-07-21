@@ -40,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int titleState=0;
 	public final int playState =1;
 	public final int pauseState =2;
+	public final int gameoverState =6;
 	public boolean checkmap=true;
 	Sound sound= new Sound();
 
@@ -101,6 +102,11 @@ public class GamePanel extends JPanel implements Runnable{
 			}
 		}
 	}
+	public void retry(){
+			playerController.setDefaultValue();
+		    playerController.restorelife();
+	}
+
 	public void update() {
 			if (gameState == playState) {
 				// update player\
