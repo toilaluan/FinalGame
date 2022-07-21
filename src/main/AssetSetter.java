@@ -69,19 +69,19 @@ public class AssetSetter {
             obj.add(ManaPot4);
             OBJ ManaPot6 = new OBJ_ManaPot();
             ManaPot6.worldX = gp.tileSize * 29;
-            ManaPot6.worldY = gp.tileSize * 25;
+            ManaPot6.worldY = gp.tileSize * 17;
             obj.add(ManaPot6);
             OBJ ManaPot5 = new OBJ_ManaPot();
             ManaPot5.worldX = gp.tileSize * 25;
-            ManaPot5.worldY = gp.tileSize * 35;
+            ManaPot5.worldY = gp.tileSize * 3;
             obj.add(ManaPot5);
             OBJ Shield6 = new OBJ_Shield();
-            Shield6.worldX = gp.tileSize * 25;
-            Shield6.worldY = gp.tileSize * 29;
+            Shield6.worldX = gp.tileSize * 11;
+            Shield6.worldY = gp.tileSize * 14;
             obj.add(Shield6);
             OBJ Shield5 = new OBJ_Shield();
             Shield5.worldX = gp.tileSize * 27;
-            Shield5.worldY = gp.tileSize * 32;
+            Shield5.worldY = gp.tileSize * 12;
             obj.add(Shield5);
         }
         else {
