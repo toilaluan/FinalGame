@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Monster;
 import entity.Player;
 import main.CollisionChecker;
 import main.GamePanel;
@@ -10,24 +11,28 @@ import java.awt.*;
 public class PlayerController extends EntityController{
     GamePanel gp;
     Player player;
+    Monster monster;
+
     public static boolean hasKey = false;
     public int heroCounter;
-
+    private int timeLife = 30;
+    private int timeMana = 0;
     public static boolean checkUp;
     public static boolean checkDown;
     public static boolean checkLeft;
     public static boolean checkRight;
-    public PlayerController(GamePanel gp, Player player){
+    public PlayerController(GamePanel gp, Player player, Monster monster){
         this.gp = gp;
         this.player = player;
+        this.monster = monster;
         setDefaultValue();
     }
     private void setDefaultValue(){
         hasKey = false;
         screenX = gp.screenWidth/2-gp.tileSize/2;
         screenY = gp.screenHeight/2-gp.tileSize/2;
-        player.worldX = gp.tileSize * 8;
-        player.worldY = gp.tileSize * 8;
+        player.worldX = gp.tileSize * 5;
+        player.worldY = gp.tileSize * 5;
         heroCounter = 0;
         heroNum = 0;
         player.solidArea = new Rectangle();
@@ -35,10 +40,29 @@ public class PlayerController extends EntityController{
         player.solidArea.y = 16;
         player.solidArea.width = 32;
         player.solidArea.height = 32;
+        dyingCounter =0;
     }
 
     @Override
     public void update() {
+        timeMana += 1;
+        if(timeMana >=2000){
+            player.mana -= 1;
+            timeMana = 0;
+        }
+        if(Math.abs(player.worldX - monster.worldX) <= gp.tileSize/2 && Math.abs(player.worldY - monster.worldY) <= gp.tileSize/2){
+            timeLife += 1;
+
+            if(timeLife >=50 && player.life >=0){
+                player.life -=1;
+                timeLife = 0;
+            }
+
+        }
+        else{
+            timeLife = 30;
+        }
+
         if(player.attacking){
             attacking();
         }

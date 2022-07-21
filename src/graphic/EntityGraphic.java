@@ -62,7 +62,6 @@ public class EntityGraphic extends Entity {
 		return bImage;
     }
 
-
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
 //		g2.setColor(Color.white);

@@ -18,6 +18,9 @@ public abstract class Entity {
 	public int maxMana;
 	public int mana;
 	public int defend;
+	public boolean alive=true;
+	public boolean dying =false;
+
 
 	public String direction;
 	public ArrayList<OBJ> item;

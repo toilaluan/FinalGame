@@ -49,8 +49,10 @@ public class GamePanel extends JPanel implements Runnable{
 
 	}
 	public Player player = new Player(1, 1, 4, 6, 6, "down");
-	public PlayerController playerController = new PlayerController(this, player);
+
 	public Monster monster1 = new Monster(1, 1, 1, 4, 4, "down");
+
+	public PlayerController playerController = new PlayerController(this, player, monster1);
 	public MonsterController monsterController = new MonsterController(this, monster1);
 	public TileManager tileM = new TileManager(this);
 	//	set Player's default position

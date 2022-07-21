@@ -15,6 +15,7 @@ public abstract class EntityController {
     public static boolean colissionOnCol;
     public static boolean colissionOnRoW;
     public int heroNum;
+    public int dyingCounter;
     public abstract void update();
     public abstract void attacking();
 
