@@ -4,6 +4,8 @@ import controller.PlayerController;
 import entity.Player;
 import main.GamePanel;
 
+import java.util.ArrayList;
+
 public class ObjInteraction {
 	public void ObjInteraction(GamePanel gp, int i) {
 		if (i != 999) {
@@ -16,12 +18,22 @@ public class ObjInteraction {
 				case "Door":
 					if (PlayerController.hasKey) {
 						gp.obj.remove(gp.obj.get(i));
-//						gp.tileM.getMap("/maps/Rung.txt");
-						System.out.println("Move to next map!");
+						gp.checkmap=false;
 						gp.tileM.updateMap("map/ice2layer.xml");
+						gp.obj=new ArrayList<>();
+						gp.aSetter.setObject(gp.obj);
 					}
 					break;
 				case "HpPotion":
+					gp.player.life++;
+					gp.obj.remove(gp.obj.get(i));
+					break;
+				case "SpeedPotion":
+                    OBJ_SpeedPotion.speedBonus+=1;
+					gp.obj.remove(gp.obj.get(i));
+					break;
+				case "ManaPot":
+					gp.player.mana++;
 					gp.obj.remove(gp.obj.get(i));
 					break;
 			}
