@@ -44,9 +44,7 @@ public class GamePanel extends JPanel implements Runnable{
 
 	Thread gameThread;
 	public KeyHandler keyH = new KeyHandler(this);
-	public void initPlayer(){
 
-	}
 	public Player player = new Player(1, 1, 4, 6, 6, "down");
 	public PlayerController playerController = new PlayerController(this, player);
 	public Monster monster1 = new Monster(1, 1, 1, 4, 4, "down");
@@ -101,7 +99,10 @@ public class GamePanel extends JPanel implements Runnable{
 	public void update() {
 			if (gameState == playState) {
 				// update player\
-				monsterController.update();
+				if (monster1.live){
+					monsterController.update();
+				}
+				System.out.println(monster1.life);
 				playerController.update();
 //				System.out.println(player.life);
 			}
@@ -124,7 +125,9 @@ public class GamePanel extends JPanel implements Runnable{
 //			System.out.println(1);
 			}
 			pg.draw(g2);
-			mg.draw(g2);
+			if (monster1.live){
+				mg.draw(g2);
+			}
 			ui.draw(g2);
 		}
 

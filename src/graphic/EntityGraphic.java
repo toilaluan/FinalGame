@@ -27,7 +27,7 @@ public class EntityGraphic extends Entity {
     public EntityGraphic(Entity p, GamePanel gp, String playerType, String attackType, EntityController entityController){
 		this.walk_SS_path = "/Actor/Characters/" + playerType + "/SeparateAnim/Walk.png";
 		this.attack_SS_path = "/Actor/Characters/" + playerType + "/SeparateAnim/Attack.png";
-		this.attack_item_SS_path = "/Items/Weapons/" + attackType + "SpriteInHand.png";
+		this.attack_item_SS_path = "/Items/Weapons/" + attackType + "/SpriteInHand.png";
 		this.player = p;
 		this.keyH = gp.keyH;
         this.gp = gp;
@@ -35,13 +35,13 @@ public class EntityGraphic extends Entity {
 		this.attackSS = new SpriteSheet(gp, attack_SS_path);
 		walk_images = walkSS.getSpriteImage(4, 4);
 		attack_images = attackSS.getSpriteImage(4, 1);
-		wp = new Weapon(gp);
+		wp = new Weapon(gp, attack_item_SS_path);
 		this.entityController = entityController;
     }
 	public EntityGraphic(Entity p, GamePanel gp, String monsterType, EntityController entityController){
 		this.walk_SS_path = "/Actor/Monsters/" + monsterType + "/" + monsterType + ".png";
-		this.attack_SS_path = "/Actor/Characters/" + "BlueNinja" + "/SeparateAnim/Attack.png";
-		this.attack_item_SS_path = "/Items/Weapons/" + "Lance" + "SpriteInHand.png";
+		this.attack_SS_path = "/Actor/Monsters/" + monsterType + "/" + monsterType + "_attack.png";
+		this.attack_item_SS_path = "/Items/Weapons/" + "Sai/" + "SpriteInHand.png";
 		this.player = p;
 		this.keyH = gp.keyH;
 		this.gp = gp;
@@ -49,7 +49,7 @@ public class EntityGraphic extends Entity {
 		this.attackSS = new SpriteSheet(gp, attack_SS_path);
 		walk_images = walkSS.getSpriteImage(4, 4);
 		attack_images = attackSS.getSpriteImage(4, 1);
-		wp = new Weapon(gp);
+		wp = new Weapon(gp, attack_item_SS_path);
 		this.entityController = entityController;
 	}
     public BufferedImage getImage(String path){
@@ -102,7 +102,7 @@ public class EntityGraphic extends Entity {
 			break;
 		}
 		if (player.attacking){
-			wp.draw(g2);
+			wp.draw(g2, entityController);
 		}
 		g2.drawImage(image, entityController.screenX, entityController.screenY, gp.tileSize, gp.tileSize, null);
 	}

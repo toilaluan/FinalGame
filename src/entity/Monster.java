@@ -7,6 +7,7 @@ import java.awt.*;
 public class Monster extends Entity{
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int defaultWorldX, defaultWorldY;
+    public boolean live = true;
     public Monster(int attack,
                   int defense,
                   int speed,
@@ -19,6 +20,8 @@ public class Monster extends Entity{
         this.maxlife = maxLife;
         this.maxMana = maxMana;
         this.direction = direction;
+        this.life = maxLife;
+        this.mana = maxMana;
     }
 
 }

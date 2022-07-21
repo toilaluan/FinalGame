@@ -18,5 +18,6 @@ public class Player extends Entity {
 		this.direction = direction;
 		this.life = maxLife;
 		this.mana = maxMana;
+		this.attacking = false;
 	}
 }

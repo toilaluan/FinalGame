@@ -1,5 +1,6 @@
 package graphic;
 
+import controller.EntityController;
 import main.GamePanel;
 
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Weapon {
-    String weapon_path = "/Items/Weapons/Lance/SpriteInHand.png";
+    String weapon_path;
     SpriteSheet weapon_SS;
     GamePanel gp;
     static int w = 6;
@@ -16,20 +17,20 @@ public class Weapon {
     ArrayList<BufferedImage> weapon_images;
 
     BufferedImage image;
-    public Weapon(GamePanel gp){
+    public Weapon(GamePanel gp, String weapon_path){
         this.gp = gp;
         weapon_SS = new SpriteSheet(gp, weapon_path);
         weapon_images = weapon_SS.getSpriteImage(1, 1);
         image = resize(weapon_images.get(0), w, h);
     }
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2, EntityController entityController){
         BufferedImage r_img;
         switch (gp.player.direction){
             case "down":
                 r_img = rotateImageByDegrees(image, 0);
                 g2.drawImage(r_img,
-                        gp.playerController.screenX,
-                        gp.playerController.screenY+gp.tileSize,
+                        entityController.screenX,
+                        entityController.screenY+gp.tileSize,
                         r_img.getWidth()*gp.scale,
                         r_img.getHeight()*gp.scale,
                         null);
@@ -38,8 +39,8 @@ public class Weapon {
                 r_img = rotateImageByDegrees(image, 180);
                 g2.drawImage(
                         r_img,
-                        gp.playerController.screenX + gp.tileSize/2,
-                        gp.playerController.screenY-gp.tileSize/2,
+                        entityController.screenX + gp.tileSize/2,
+                        entityController.screenY-gp.tileSize/2,
                         r_img.getWidth()*gp.scale,
                         r_img.getHeight()*gp.scale,
                         null);
@@ -48,8 +49,8 @@ public class Weapon {
                 r_img = rotateImageByDegrees(image, 90);
                 g2.drawImage(
                         r_img,
-                        gp.playerController.screenX - gp.tileSize,
-                        gp.playerController.screenY + gp.tileSize/2,
+                        entityController.screenX - gp.tileSize,
+                        entityController.screenY + gp.tileSize/2,
                         r_img.getWidth()*gp.scale,
                         r_img.getHeight()*gp.scale,
                         null);
@@ -58,8 +59,8 @@ public class Weapon {
                 r_img = rotateImageByDegrees(image, 270);
                 g2.drawImage(
                         r_img,
-                        gp.playerController.screenX + gp.tileSize,
-                        gp.playerController.screenY + gp.tileSize/2,
+                        entityController.screenX + gp.tileSize,
+                        entityController.screenY + gp.tileSize/2,
                         r_img.getWidth()*gp.scale,
                         r_img.getHeight()*gp.scale,
                         null);

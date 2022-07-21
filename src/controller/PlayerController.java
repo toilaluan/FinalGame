@@ -16,6 +16,7 @@ public class PlayerController extends EntityController{
     public static boolean checkDown;
     public static boolean checkLeft;
     public static boolean checkRight;
+    int attackLatency = 0;
     public PlayerController(GamePanel gp, Player player){
         this.gp = gp;
         this.player = player;
@@ -35,42 +36,8 @@ public class PlayerController extends EntityController{
         player.solidArea.width = 32;
         player.solidArea.height = 32;
     }
+    public void checkCollision(){
 
-    @Override
-    public void update() {
-        if(player.attacking){
-            attacking();
-        }
-        else if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.rightPressed || gp.keyH.leftPressed || gp.keyH.spacePressed){
-            player.attacking = gp.keyH.spacePressed;
-            if (gp.keyH.upPressed) {
-                player.direction = "up";
-                checkUp=true;
-            }
-            else checkUp = false;
-            if (gp.keyH.downPressed) {
-                player.direction = "down";
-                checkDown=true;
-            }
-            else checkDown=false;
-            if (gp.keyH.rightPressed) {
-                player.direction = "right";
-                checkRight=true;
-            }
-            else checkRight = false;
-            if (gp.keyH.leftPressed) {
-                player.direction = "left";
-                checkLeft=true;
-            }
-            else checkLeft=false;
-            heroCounter += 1;
-            if (heroCounter > 10) {
-                heroNum+=1;
-                heroNum = heroNum%4;
-//			System.out.println(heroNum);
-                heroCounter = 0;
-            }
-        }
         colissionOnRoW = false;
         colissionOnCol = false;
         gp.cChecker.checkTile(player, this);
@@ -105,40 +72,54 @@ public class PlayerController extends EntityController{
     }
 
     @Override
-    public void attacking() {
-        heroCounter++;
-        if(heroCounter <= 5){
-            heroNum = 1;
-        }
-        if(heroCounter > 5 && heroCounter < 10){
-            heroNum = 2;
-            //luu worldX,Y, solidArea
-            int currentWorldX = player.worldX;
-            int currentWorldY = player.worldY;
-            int solidAreaWidth = player.solidArea.width;
-            int solidAreaHeight = player.solidArea.height;
-
-            switch (player.direction){
-                case "up": player.worldY -= player.attackArea.height;
-                case "down": player.worldY += player.attackArea.height;
-                case "left": player.worldX -= player.attackArea.width;
-                case "right": player.worldX += player.attackArea.width;
-            }
-
-            player.solidArea.width = player.attackArea.width;
-            player.solidArea.height = player.attackArea.height;
-
-//			int monIndex = gp.cChecker.checkEntity(this, gp.monster);
-//			damageMonster(monIndex, atk);
-            player.worldX = currentWorldX;
-            player.worldY = currentWorldY;
-            player.solidArea.width = solidAreaWidth;
-            player.solidArea.height = solidAreaHeight;
-        }
-        if(heroCounter >= 10){
-            heroNum = 1;
-            heroCounter = 0;
+    public void update() {
+        attackLatency += 1;
+        if(player.attacking && attackLatency > 10){
+            attacking();
             player.attacking = false;
+            attackLatency = 0;
+        }else if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.rightPressed || gp.keyH.leftPressed || gp.keyH.spacePressed){
+            player.attacking = gp.keyH.spacePressed;
+            if (gp.keyH.upPressed) {
+                player.direction = "up";
+                checkUp=true;
+            }
+            else checkUp = false;
+            if (gp.keyH.downPressed) {
+                player.direction = "down";
+                checkDown=true;
+            }
+            else checkDown=false;
+            if (gp.keyH.rightPressed) {
+                player.direction = "right";
+                checkRight=true;
+            }
+            else checkRight = false;
+            if (gp.keyH.leftPressed) {
+                player.direction = "left";
+                checkLeft=true;
+            }
+            else checkLeft=false;
+            heroCounter += 1;
+            if (heroCounter > 10) {
+                heroNum+=1;
+                heroNum = heroNum%4;
+//			System.out.println(heroNum);
+                heroCounter = 0;
+            }
         }
+        checkCollision();
     }
+
+    @Override
+    public void attacking() {
+        if (gp.monster1.solidArea.intersects(player.solidArea)){
+            gp.monster1.life -= 1;
+            if (gp.monster1.life <= 0){
+                gp.monster1.live = false;
+            }
+        }
+
+    }
+
 }

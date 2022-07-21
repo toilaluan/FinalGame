@@ -3,6 +3,7 @@ package controller;
 import entity.Monster;
 import main.GamePanel;
 
+import java.awt.*;
 import java.util.Stack;
 
 public class MonsterController extends EntityController{
@@ -20,6 +21,11 @@ public class MonsterController extends EntityController{
         monster.defaultWorldY = monster.worldY;
         heroCounter = 0;
         heroNum = 0;
+        monster.solidArea = new Rectangle();
+        monster.solidArea.x = 8;
+        monster.solidArea.y = 16;
+        monster.solidArea.width = 32;
+        monster.solidArea.height = 32;
     }
     @Override
     public void update() {
@@ -31,11 +37,62 @@ public class MonsterController extends EntityController{
         else{
             chasing(monster.defaultWorldX, monster.defaultWorldY);
         }
+        heroCounter += 1;
+        if (heroCounter > 10) {
+            if (heroNum == 1) {
+                heroNum = 2;
+            } else if (heroNum == 2) {
+                heroNum = 1;
+            }
+            heroCounter = 0;
+        }
     }
 
     @Override
     public void attacking() {
+        System.out.println("Monster attacking");
+        heroCounter++;
+        if(heroCounter <= 5){
+            heroNum = 1;
+        }
+        if(heroCounter > 5 && heroCounter < 10){
+            heroNum = 2;
+            //luu worldX,Y, solidArea
+            int currentWorldX = monster.worldX;
+            int currentWorldY = monster.worldY;
+            int solidAreaWidth = monster.solidArea.width;
+            int solidAreaHeight = monster.solidArea.height;
 
+            switch (monster.direction){
+                case "up":
+                    monster.worldY -= monster.attackArea.height;
+                    break;
+                case "down":
+                    monster.worldY += monster.attackArea.height;
+                    break;
+                case "left":
+                    monster.worldX -= monster.attackArea.width;
+                    break;
+                case "right":
+                    monster.worldX += monster.attackArea.width;
+                    break;
+            }
+
+            monster.solidArea.width = monster.attackArea.width;
+            monster.solidArea.height = monster.attackArea.height;
+
+//			int monIndex = gp.cChecker.checkEntity(this, gp.monster);
+//			damageMonster(monIndex, atk);
+            monster.worldX = currentWorldX;
+            monster.worldY = currentWorldY;
+            monster.solidArea.width = solidAreaWidth;
+            monster.solidArea.height = solidAreaHeight;
+        }
+        if(heroCounter >= 10){
+            heroNum = 1;
+            heroCounter = 0;
+            monster.attacking = false;
+        }
     }
     public void chasing(int targetX, int targetY){
         int dx = monster.worldX - targetX;
@@ -65,18 +122,25 @@ public class MonsterController extends EntityController{
             System.out.println(move);
             switch (move){
                 case "up":
+                    monster.direction = "up";
                     monster.worldY -= monster.speed;
                     break;
                 case "down":
+                    monster.direction = "down";
                     monster.worldY += monster.speed;
                     break;
                 case "left":
+                    monster.direction = "right";
                     monster.worldX += monster.speed;
                     break;
                 case "right":
+                    monster.direction = "left";
                     monster.worldX -= monster.speed;
                     break;
             }
+            monster.attacking = true;
+            attacking();
+//            monster.attacking = false;
         }
 
     }

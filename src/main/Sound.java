@@ -13,9 +13,7 @@ public class Sound {
     URL[] soundURL = new URL[30];
 
     public Sound(){
-        soundURL[0] = getClass().getResource("/Sounds/Game/BlueBoyAdventure.wav");
-
-
+        soundURL[0] = getClass().getResource("/Sounds/Game/narutos-theme-song.wav");
     }
     public void setFile(int i){
         try{
