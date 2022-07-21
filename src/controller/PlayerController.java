@@ -3,6 +3,7 @@ package controller;
 import entity.Player;
 import main.CollisionChecker;
 import main.GamePanel;
+import object.OBJ_SpeedPotion;
 
 import java.awt.*;
 
@@ -79,16 +80,16 @@ public class PlayerController extends EntityController{
         if (!colissionOnCol||!colissionOnRoW){
             if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.rightPressed || gp.keyH.leftPressed){
                 if (gp.keyH.upPressed) {
-                    player.worldY -= player.speed;
+                    player.worldY -= player.speed+ OBJ_SpeedPotion.speedBonus;
                 }
                 if (gp.keyH.downPressed) {
-                    player.worldY += player.speed;
+                    player.worldY += player.speed+OBJ_SpeedPotion.speedBonus;
                 }
                 if (gp.keyH.rightPressed) {
-                    player.worldX += player.speed;
+                    player.worldX += player.speed+OBJ_SpeedPotion.speedBonus;
                 }
                 if (gp.keyH.leftPressed) {
-                    player.worldX -= player.speed;
+                    player.worldX -= player.speed+OBJ_SpeedPotion.speedBonus;
                 }
                 gp.cChecker.checkTile(player, this);
                 heroCounter += 1;

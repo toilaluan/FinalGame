@@ -6,12 +6,12 @@ public class OBJ_SpeedPotion extends OBJ{
     public OBJ_SpeedPotion(){
         name = "SpeedPotion";
         try{
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/objects/potion_yellow.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Potion/MilkPot.png")));
         }catch (Exception e){
             e.printStackTrace();
         }
     }
-    public static int speedBonus = 1;
+    public static int speedBonus = 0;
 }
 
 

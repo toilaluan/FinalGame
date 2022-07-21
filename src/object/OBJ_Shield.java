@@ -8,7 +8,7 @@ public class OBJ_Shield extends OBJ{
     public OBJ_Shield(){
         name = "Shield";
         try{
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/objects/shield_blue.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/objects/shield_wood.png")));
         }catch (Exception e){
             e.printStackTrace();
         }

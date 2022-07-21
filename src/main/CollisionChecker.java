@@ -2,6 +2,7 @@ package main;
 
 import controller.EntityController;
 import entity.Entity;
+import object.OBJ_SpeedPotion;
 import object.ObjInteraction;
 
 public class CollisionChecker {
@@ -22,7 +23,7 @@ public class CollisionChecker {
         int tileNum1, tileNum2;
             switch (entity.direction) {
                 case "up":
-                    entityTopRow = (entityTopWorldY - entity.speed) / gp.tileSize;
+                    entityTopRow = (entityTopWorldY - entity.speed+ OBJ_SpeedPotion.speedBonus) / gp.tileSize;
 //                    System.out.println(entityTopRow);
                     int index_topright = gp.maxWorldCol*entityTopRow + entityRightCol;
                     int index_topleft = gp.maxWorldCol*entityTopRow + entityLeftCol;
@@ -33,7 +34,7 @@ public class CollisionChecker {
                     EntityController.colissionOnRoW = gp.tileM.tileMaps.get(1).blocks[index_topright] != null;
                     break;
                 case "down":
-                    entityBottomRow = (entityBottomWorldY + entity.speed) / gp.tileSize;
+                    entityBottomRow = (entityBottomWorldY + entity.speed+OBJ_SpeedPotion.speedBonus) / gp.tileSize;
                     int index_botright = gp.maxWorldCol*entityBottomRow + entityRightCol;
                     int index_botleft = gp.maxWorldCol*entityBottomRow + entityLeftCol;
                     if (index_botleft < 0 || index_botright < 0 || index_botleft > gp.maxWorldCol*gp.maxWorldRow || index_botright > gp.maxWorldCol*gp.maxWorldRow){
@@ -43,7 +44,7 @@ public class CollisionChecker {
                     EntityController.colissionOnRoW = gp.tileM.tileMaps.get(1).blocks[index_botleft] != null;
                     break;
                case "left":
-                    entityLeftCol = (entityLeftWorldX - entity.speed) / gp.tileSize;
+                    entityLeftCol = (entityLeftWorldX - entity.speed+OBJ_SpeedPotion.speedBonus) / gp.tileSize;
                    int index_lefttop = gp.maxWorldCol*entityTopRow+entityLeftCol;
                    int index_leftbot = gp.maxWorldCol*entityBottomRow + entityLeftCol;
                    if (index_lefttop < 0 || index_leftbot < 0){
@@ -53,7 +54,7 @@ public class CollisionChecker {
                    EntityController.colissionOnRoW = gp.tileM.tileMaps.get(1).blocks[index_leftbot] != null;
                    break;
                 case "right":
-                    entityRightCol = (entityRightWorldX - entity.speed) / gp.tileSize;
+                    entityRightCol = (entityRightWorldX - entity.speed+OBJ_SpeedPotion.speedBonus) / gp.tileSize;
                     int index_righttop = gp.maxWorldCol*entityTopRow + entityRightCol;
                     int index_rightbot = gp.maxWorldCol*entityBottomRow + entityRightCol;
                     if (index_rightbot < 0 || index_righttop < 0){
@@ -77,7 +78,7 @@ public class CollisionChecker {
 
                 switch(entity.direction){
                     case "up":
-                        entity.solidArea.x -= entity.speed;
+                        entity.solidArea.x -= entity.speed+OBJ_SpeedPotion.speedBonus;
                         if (entity.solidArea.intersects(gp.obj.get(i).solidArea)){
                             if(gp.obj.get(i).colission){
                                 EntityController.colissionOnRoW = true;
@@ -87,7 +88,7 @@ public class CollisionChecker {
                         }
                         break;
                     case "down":
-                        entity.solidArea.x += entity.speed;
+                        entity.solidArea.x += entity.speed+OBJ_SpeedPotion.speedBonus;
                         if (entity.solidArea.intersects(gp.obj.get(i).solidArea)){
 
                             if(gp.obj.get(i).colission){
@@ -98,7 +99,7 @@ public class CollisionChecker {
                         }
                         break;
                     case "right":
-                        entity.solidArea.y += entity.speed;
+                        entity.solidArea.y += entity.speed+OBJ_SpeedPotion.speedBonus;
                         if (entity.solidArea.intersects(gp.obj.get(i).solidArea)){
 
                             if(gp.obj.get(i).colission){
@@ -109,7 +110,7 @@ public class CollisionChecker {
                         }
                         break;
                     case "left":
-                        entity.solidArea.y -= entity.speed;
+                        entity.solidArea.y -= entity.speed+OBJ_SpeedPotion.speedBonus;
                         if (entity.solidArea.intersects(gp.obj.get(i).solidArea)){
 
                             if(gp.obj.get(i).colission){

@@ -40,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int titleState=0;
 	public final int playState =1;
 	public final int pauseState =2;
+	public boolean checkmap=true;
 	Sound sound= new Sound();
 
 	Thread gameThread;

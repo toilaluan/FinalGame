@@ -11,7 +11,6 @@ public class OBJ_HpPotion extends OBJ{
             e.printStackTrace();
         }
     }
-    public static int HpBonus = 1;
 }
 
 
