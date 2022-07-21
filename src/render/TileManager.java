@@ -23,7 +23,7 @@ public class TileManager {
     public TileManager(GamePanel gp){
         tileMaps = new ArrayList<>();
         this.gp = gp;
-        addTileMap("map/Map2.xml");
+        addTileMap("map/Map1.xml");
     }
     public void updateMap(String path){
         tileMaps = new ArrayList<>();
@@ -75,14 +75,18 @@ public class TileManager {
                 eElement1 = (Element) node1;
                 node2 = list2.item(i);
                 eElement2 = (Element) node2;
+                System.out.println();
                 width = Integer.parseInt(eElement2.getAttribute("width"));
                 height = Integer.parseInt(eElement2.getAttribute("height"));
                 data[i] = eElement2.getElementsByTagName("data").item(0).getTextContent();
                 tileColumns = Integer.parseInt(eElement1.getAttribute("columns"));
+                System.out.println(tileColumns);
+                System.out.println(width);
                 if (i == 0){
                     tileMaps.add(new FloorMap(sprites.get(i), data[i], width, height, tileColumns, tileCount, false));
                 }
                 else if (i == 1){
+                    System.out.println(tileCount);
                     tileMaps.add(new FloorMap(sprites.get(i), data[i], width, height, tileColumns, tileCount, true));
                 }
                 tileCount += Integer.parseInt(eElement1.getAttribute("tilecount"));
