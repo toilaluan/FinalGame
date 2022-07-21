@@ -26,13 +26,14 @@ public class PlayerController extends EntityController{
         this.player = player;
         this.monster = monster;
         setDefaultValue();
+
     }
-    private void setDefaultValue(){
+    public void setDefaultValue(){
         hasKey = false;
         screenX = gp.screenWidth/2-gp.tileSize/2;
         screenY = gp.screenHeight/2-gp.tileSize/2;
-        player.worldX = gp.tileSize * 5;
-        player.worldY = gp.tileSize * 5;
+        player.worldX = gp.tileSize * 10;
+        player.worldY = gp.tileSize * 10;
         heroCounter = 0;
         heroNum = 0;
         player.solidArea = new Rectangle();
@@ -41,6 +42,10 @@ public class PlayerController extends EntityController{
         player.solidArea.width = 32;
         player.solidArea.height = 32;
         dyingCounter =0;
+    }
+    public void restorelife(){
+        player.life= player.maxlife;
+        player.mana= player.maxMana;
     }
 
     @Override
@@ -126,6 +131,9 @@ public class PlayerController extends EntityController{
                     heroCounter = 0;
                 }
             }
+        }
+        if(player.life<=0){
+            gp.gameState=gp.gameoverState;
         }
     }
 
