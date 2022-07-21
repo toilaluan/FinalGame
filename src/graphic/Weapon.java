@@ -1,13 +1,13 @@
 package graphic;
 
 import main.GamePanel;
-
+import graphic.EntityGraphic;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Weapon {
+public class Weapon  {
     String weapon_path = "/Items/Weapons/Lance/SpriteInHand.png";
     SpriteSheet weapon_SS;
     GamePanel gp;

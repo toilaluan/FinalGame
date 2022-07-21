@@ -7,6 +7,8 @@ public class Player extends Entity {
 	public Player(int attack,
 				  int defense,
 				  int speed,
+
+
 				  int maxLife,
 				  int maxMana,
 				  String direction) {
