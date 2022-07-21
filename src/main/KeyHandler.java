@@ -101,8 +101,11 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_P) {
                 gp.gameState = gp.playState;
             }
-
-
+        }
+        else if (gp.gameState == gp.OverState)
+        {
+            if(code == KeyEvent.VK_ESCAPE)
+                System.exit(0);
         }
     }
     @Override

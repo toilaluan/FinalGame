@@ -39,6 +39,11 @@ public class UI {
         this.g2 = g2;
         g2.setFont(arial_40);
         g2.setColor(Color.white);
+        if(gp.player.life<=0){
+            gp.gameState=gp.OverState;
+            drawGameOverScreen();
+        }
+        else {
         if (gp.gameState == gp.titleState) {
             drawTitleScreen();
         }
@@ -49,6 +54,7 @@ public class UI {
             drawPlayerLife();
             drawPlayerMana();
             drawPauseScreen();
+        }
         }
     }
     public void drawPlayerLife(){
@@ -116,6 +122,17 @@ public class UI {
 
     public void drawPauseScreen() {
         String text = "PAUSED";
+        int x = getXforCenteredText(text);
+        int y = gp.screenHeight / 2;
+        final int frameX = gp.screenWidth / 2 - 120;
+        final int frameY = gp.screenHeight / 2 - 60;
+        final int frameWidth = gp.tileSize * 5;
+        final int frameHeight = gp.tileSize * 2;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        g2.drawString(text, x, y);
+    }
+    public void drawGameOverScreen() {
+        String text = "GAME OVER";
         int x = getXforCenteredText(text);
         int y = gp.screenHeight / 2;
         final int frameX = gp.screenWidth / 2 - 120;

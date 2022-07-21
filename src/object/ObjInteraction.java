@@ -36,6 +36,10 @@ public class ObjInteraction {
 					gp.player.mana++;
 					gp.obj.remove(gp.obj.get(i));
 					break;
+				case "Shield":
+					gp.player.defend++;
+					gp.obj.remove(gp.obj.get(i));
+					break;
 			}
 		}
 	}
