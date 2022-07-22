@@ -8,6 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Entity {
+	public boolean live = true;
 	public int worldX;
 	public int worldY;
 	public int speed;

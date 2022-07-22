@@ -12,14 +12,15 @@ public class ObjInteraction {
 			String objectName = gp.obj.get(i).name;
 			switch (objectName) {
 				case "Key":
-					PlayerController.hasKey = true;
+					gp.playerController.hasKey = true;
 					gp.obj.remove(gp.obj.get(i));
 					break;
 				case "Door":
-					if (PlayerController.hasKey) {
+					if (gp.playerController.hasKey) {
 						gp.obj.remove(gp.obj.get(i));
 						gp.checkmap=false;
 						gp.tileM.updateMap("map/ice2layer.xml");
+						gp.playerController.hasKey = false;
 						gp.obj=new ArrayList<>();
 						gp.aSetter.setObject(gp.obj);
 					}

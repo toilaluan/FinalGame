@@ -5,7 +5,7 @@ import main.GamePanel;
 import java.awt.*;
 
 public class Monster extends Entity{
-    public Rectangle attackArea = new Rectangle(0,0,0,0);
+    public Rectangle attackArea;
     public int defaultWorldX, defaultWorldY;
     public Monster(int attack,
                   int defense,
@@ -19,6 +19,10 @@ public class Monster extends Entity{
         this.maxlife = maxLife;
         this.maxMana = maxMana;
         this.direction = direction;
+        this.life =maxLife;
+        this.mana = maxMana;
+        attackArea  = new Rectangle(0,0,0,0);
+        solidArea = new Rectangle(0,0,48,48);
     }
 
 }

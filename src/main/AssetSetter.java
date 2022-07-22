@@ -16,8 +16,8 @@ public class AssetSetter {
             key_1.worldY = gp.tileSize * 15;
             obj.add(key_1);
             OBJ door_1 = new OBJ_Door();
-            door_1.worldX = gp.tileSize * 27;
-            door_1.worldY = gp.tileSize * 3;
+            door_1.worldX = gp.tileSize * 30;
+            door_1.worldY = gp.tileSize * 10;
             obj.add(door_1);
             OBJ SpeedPot1 = new OBJ_SpeedPotion();
             SpeedPot1.worldX = gp.tileSize * 15;
@@ -69,19 +69,19 @@ public class AssetSetter {
             obj.add(ManaPot4);
             OBJ ManaPot6 = new OBJ_ManaPot();
             ManaPot6.worldX = gp.tileSize * 29;
-            ManaPot6.worldY = gp.tileSize * 17;
+            ManaPot6.worldY = gp.tileSize * 25;
             obj.add(ManaPot6);
             OBJ ManaPot5 = new OBJ_ManaPot();
             ManaPot5.worldX = gp.tileSize * 25;
-            ManaPot5.worldY = gp.tileSize * 3;
+            ManaPot5.worldY = gp.tileSize * 35;
             obj.add(ManaPot5);
             OBJ Shield6 = new OBJ_Shield();
-            Shield6.worldX = gp.tileSize * 11;
-            Shield6.worldY = gp.tileSize * 14;
+            Shield6.worldX = gp.tileSize * 25;
+            Shield6.worldY = gp.tileSize * 29;
             obj.add(Shield6);
             OBJ Shield5 = new OBJ_Shield();
             Shield5.worldX = gp.tileSize * 27;
-            Shield5.worldY = gp.tileSize * 12;
+            Shield5.worldY = gp.tileSize * 32;
             obj.add(Shield5);
         }
         else {
@@ -126,5 +126,10 @@ public class AssetSetter {
             HpPot4.worldY = gp.tileSize * 2;
             obj.add(HpPot4);
         }
+    }
+    public void setSingleOBJ(ArrayList<OBJ> obj, OBJ singleOBJ, int x, int y){
+        singleOBJ.worldY = y;
+        singleOBJ.worldX = x;
+        obj.add(singleOBJ);
     }
 }

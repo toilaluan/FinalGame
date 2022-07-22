@@ -40,18 +40,19 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int titleState=0;
 	public final int playState =1;
 	public final int pauseState =2;
-	public final int gameoverState =6;
 	public boolean checkmap=true;
 	Sound sound= new Sound();
 
 	Thread gameThread;
 	public KeyHandler keyH = new KeyHandler(this);
+	int spawnTime = 0;
+	public ArrayList<OBJ> dameOBJ = new ArrayList<>();
 	public void initPlayer(){
 
 	}
 	public Player player = new Player(1, 1, 4, 6, 6, "down");
 
-	public Monster monster1 = new Monster(1, 1, 1, 4, 4, "down");
+	public Monster monster1 = new Monster(1, 1, 1, 6, 4, "down");
 
 	public PlayerController playerController = new PlayerController(this, player, monster1);
 	public MonsterController monsterController = new MonsterController(this, monster1);
@@ -102,15 +103,19 @@ public class GamePanel extends JPanel implements Runnable{
 			}
 		}
 	}
-	public void retry(){
-			playerController.setDefaultValue();
-		    playerController.restorelife();
-	}
-
 	public void update() {
+		spawnTime += 1;
+		if (spawnTime > 500 && monster1.live == false){
+//			monster1.live = true;
+			monster1 = new Monster(1, 2,3, 10, 10, "down");
+			spawnTime = 0;
+
+		}
 			if (gameState == playState) {
 				// update player\
-				monsterController.update();
+				if (monster1.live){
+					monsterController.update();
+				}
 				playerController.update();
 //				System.out.println(player.life);
 			}
@@ -132,8 +137,17 @@ public class GamePanel extends JPanel implements Runnable{
 				value.draw(g2, this);
 //			System.out.println(1);
 			}
+			for (OBJ value : dameOBJ) {
+				if (value == null) {
+					break;
+				}
+				value.draw(g2, this);
+//			System.out.println(1);
+			}
 			pg.draw(g2);
-			mg.draw(g2);
+			if (monster1.live){
+				mg.draw(g2);
+			}
 			ui.draw(g2);
 		}
 
