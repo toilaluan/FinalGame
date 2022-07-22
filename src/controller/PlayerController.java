@@ -132,7 +132,7 @@ public class PlayerController extends EntityController{
                 }
             }
         }
-        if(player.life<=0){
+        if(player.life==7){
             gp.gameState=gp.gameoverState;
         }
     }

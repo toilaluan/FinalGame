@@ -5,6 +5,7 @@ import entity.Player;
 import main.GamePanel;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ObjInteraction {
 	public void ObjInteraction(GamePanel gp, int i) {
@@ -34,6 +35,23 @@ public class ObjInteraction {
 					break;
 				case "ManaPot":
 					gp.player.mana++;
+					gp.obj.remove(gp.obj.get(i));
+					break;
+				case "Shield":
+					gp.player.defend++;
+					gp.obj.remove(gp.obj.get(i));
+					break;
+				case "Chest":
+					Random rand = new Random();
+					int random = rand.nextInt(100)+1;
+					switch (random%3){
+						case 0:
+							gp.player.life++;
+						case 1:
+							gp.player.mana++;
+						case 2:
+							gp.player.attack++;
+					}
 					gp.obj.remove(gp.obj.get(i));
 					break;
 			}

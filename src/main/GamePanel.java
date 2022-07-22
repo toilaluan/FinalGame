@@ -103,8 +103,10 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
 	public void retry(){
+		    obj=new ArrayList<>();
 			playerController.setDefaultValue();
 		    playerController.restorelife();
+			aSetter.setObject(obj);
 	}
 
 	public void update() {

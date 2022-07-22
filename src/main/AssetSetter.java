@@ -83,6 +83,11 @@ public class AssetSetter {
             Shield5.worldX = gp.tileSize * 27;
             Shield5.worldY = gp.tileSize * 12;
             obj.add(Shield5);
+            OBJ Chest4 = new OBJ_Chest();
+            Chest4.worldX = gp.tileSize * 27;
+            Chest4.worldY = gp.tileSize * 5;
+            obj.add(Chest4);
+            gp.checkmap=true;
         }
         else {
             OBJ key_1 = new OBJ_key();
@@ -125,6 +130,12 @@ public class AssetSetter {
             HpPot4.worldX = gp.tileSize * 8;
             HpPot4.worldY = gp.tileSize * 2;
             obj.add(HpPot4);
+            gp.checkmap=true;
+            OBJ Chest4 = new OBJ_Chest();
+            Chest4.worldX = gp.tileSize * 8;
+            Chest4.worldY = gp.tileSize * 6;
+            obj.add(Chest4);
+            gp.checkmap=true;
         }
     }
 }
